@@ -109,24 +109,39 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
         try {
             Connection connection = ConexaoUtil.getInstance().getConnection();
             String sql = "SELECT * FROM TB_PESSOA";
+            boolean ultimo = false;
             if (nome != null || !nome.equals("")) {
                 sql += " WHERE NOME = ?";
+                ultimo = true;
             }
             if (cpf != null || !cpf.equals("")) {
-                sql += " AND CPF = ?";
+                if(ultimo){
+                    sql += " AND";
+                }else{
+                    sql +=" WHERE";
+                }
+                sql += "CPF = ?";
             }
             if (sexo != null || !sexo.equals("")) {
-                sql += " AND SEXO = ?";
+                if(ultimo){
+                    sql += " AND";
+                }else{
+                    sql +=" WHERE";
+                    ultimo = true;
+                }
+            
+                sql += " SEXO = ?";
             }
             PreparedStatement statement = connection.prepareStatement(sql);
+            int contador = 0;
             if (nome != null || !nome.equals("")) {
-                statement.setString(1, nome);
+                statement.setString(++contador, nome);
             }
             if (cpf != null || !cpf.equals("")) {
-                statement.setLong(2, cpf);
+                statement.setLong(++contador, cpf);
             }
             if (sexo != null || !sexo.equals("")) {
-                statement.setString(3, sexo);
+                statement.setString(++contador, sexo);
             }
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {

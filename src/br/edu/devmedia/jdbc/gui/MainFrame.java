@@ -371,11 +371,11 @@ public class MainFrame extends javax.swing.JFrame {
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         try {
             String nome = txtNomeConsulta.getText();
-            String cpf = txtCPFConsulta.getText();
+            Long cpf = txtCPFConsulta.getText().equals("") ? null : Long.parseLong(txtCPFConsulta.getText());
             char sexo = rbMasculinoConsulta.isSelected() ? 'M' : 'F';
 
             PessoaBO pessoaBO = new PessoaBO();
-            String[][] listagemConsulta = pessoaBO.listaConsulta(nome, Long.parseLong(cpf), sexo);
+            String[][] listagemConsulta = pessoaBO.listaConsulta(nome, cpf, sexo);
             
             
             
