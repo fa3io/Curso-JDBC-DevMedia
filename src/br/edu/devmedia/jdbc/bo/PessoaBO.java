@@ -113,12 +113,12 @@ public class PessoaBO {
         }
         return ehValido;
     }
-     public String[][] listaConsulta(String nome, Long cpf, char sexo) throws NegocioException {
+     public String[][] listaConsulta(String nome, Long cpf, char sexo, String ordem) throws NegocioException {
         int numeroColunas = 6;
          String[][] listaRetorno = null;
         try {
             PessoaDAO pessoaDAO = new PessoaDAO();
-            List<Pessoa> lista = pessoaDAO.filtraPessoa(nome, cpf, String.valueOf(sexo));
+            List<Pessoa> lista = pessoaDAO.filtraPessoa(nome, cpf, String.valueOf(sexo), ordem);
 
             listaRetorno = new String[lista.size()][numeroColunas];
 

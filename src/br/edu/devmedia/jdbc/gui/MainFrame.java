@@ -22,6 +22,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         btgSexo = new javax.swing.ButtonGroup();
         btgSexoConsulta = new javax.swing.ButtonGroup();
+        btgOrdemConsulta = new javax.swing.ButtonGroup();
         jTabbedPane = new javax.swing.JTabbedPane();
         panelCadastro = new javax.swing.JPanel();
         lbNome = new javax.swing.JLabel();
@@ -53,6 +54,9 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         scrollConsulta = new javax.swing.JScrollPane();
         tbListagemConsulta = new javax.swing.JTable();
+        lbOrdem = new javax.swing.JLabel();
+        rbOdemNome = new javax.swing.JRadioButton();
+        rbOrdemCpf = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MainFrame");
@@ -166,7 +170,7 @@ public class MainFrame extends javax.swing.JFrame {
                     .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lbExemploData)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 95, Short.MAX_VALUE)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btOk)
                     .addComponent(btLimpar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -205,7 +209,7 @@ public class MainFrame extends javax.swing.JFrame {
             panelListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelListagemLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ScrollListagem, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                .addComponent(ScrollListagem, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -248,9 +252,17 @@ public class MainFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(scrollConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                .addComponent(scrollConsulta, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        lbOrdem.setText("Ordem:");
+
+        btgOrdemConsulta.add(rbOdemNome);
+        rbOdemNome.setText("Nome");
+
+        btgOrdemConsulta.add(rbOrdemCpf);
+        rbOrdemCpf.setText("CPF");
 
         javax.swing.GroupLayout panelConsultaLayout = new javax.swing.GroupLayout(panelConsulta);
         panelConsulta.setLayout(panelConsultaLayout);
@@ -269,11 +281,19 @@ public class MainFrame extends javax.swing.JFrame {
                             .addGap(16, 16, 16)
                             .addComponent(txtCPFConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(panelConsultaLayout.createSequentialGroup()
-                        .addComponent(lbSexoConsulta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rbMasculinoConsulta)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(rbFemininoConsulta)
+                        .addGroup(panelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panelConsultaLayout.createSequentialGroup()
+                                .addComponent(lbSexoConsulta)
+                                .addGap(12, 12, 12)
+                                .addComponent(rbMasculinoConsulta)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbFemininoConsulta))
+                            .addGroup(panelConsultaLayout.createSequentialGroup()
+                                .addComponent(lbOrdem)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rbOdemNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(rbOrdemCpf)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btPesquisar)))
                 .addContainerGap(120, Short.MAX_VALUE))
@@ -298,13 +318,21 @@ public class MainFrame extends javax.swing.JFrame {
                         .addComponent(lbCPFConsulta))
                     .addComponent(txtCPFConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btPesquisar)
-                    .addComponent(rbFemininoConsulta)
-                    .addComponent(rbMasculinoConsulta)
-                    .addComponent(lbSexoConsulta))
+                .addGroup(panelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelConsultaLayout.createSequentialGroup()
+                        .addGroup(panelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(rbFemininoConsulta)
+                            .addComponent(lbSexoConsulta)
+                            .addComponent(rbMasculinoConsulta))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(panelConsultaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbOrdem)
+                            .addComponent(rbOdemNome)
+                            .addComponent(rbOrdemCpf))
+                        .addGap(0, 7, Short.MAX_VALUE))
+                    .addComponent(btPesquisar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -327,7 +355,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(528, 425));
+        setSize(new java.awt.Dimension(528, 465));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -373,9 +401,10 @@ public class MainFrame extends javax.swing.JFrame {
             String nome = txtNomeConsulta.getText();
             Long cpf = txtCPFConsulta.getText().equals("") ? null : Long.parseLong(txtCPFConsulta.getText());
             char sexo = rbMasculinoConsulta.isSelected() ? 'M' : 'F';
-
+            String ordem  = rbOdemNome.isSelected() ? "NOME" : "CPF";
+            
             PessoaBO pessoaBO = new PessoaBO();
-            String[][] listagemConsulta = pessoaBO.listaConsulta(nome, cpf, sexo);
+            String[][] listagemConsulta = pessoaBO.listaConsulta(nome, cpf, sexo, ordem);
             
             
             
@@ -438,6 +467,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JButton btLimpar;
     private javax.swing.JButton btOk;
     private javax.swing.JButton btPesquisar;
+    private javax.swing.ButtonGroup btgOrdemConsulta;
     private javax.swing.ButtonGroup btgSexo;
     private javax.swing.ButtonGroup btgSexoConsulta;
     private javax.swing.JLabel jLabel5;
@@ -449,6 +479,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lbExemploData;
     private javax.swing.JLabel lbNome;
     private javax.swing.JLabel lbNomeConsulta;
+    private javax.swing.JLabel lbOrdem;
     private javax.swing.JLabel lbSexo;
     private javax.swing.JLabel lbSexoConsulta;
     private javax.swing.JPanel panelCadastro;
@@ -458,6 +489,8 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbFemininoConsulta;
     private javax.swing.JRadioButton rbMasculino;
     private javax.swing.JRadioButton rbMasculinoConsulta;
+    private javax.swing.JRadioButton rbOdemNome;
+    private javax.swing.JRadioButton rbOrdemCpf;
     private javax.swing.JScrollPane scrollConsulta;
     private javax.swing.JTable tbListagem;
     private javax.swing.JTable tbListagemConsulta;

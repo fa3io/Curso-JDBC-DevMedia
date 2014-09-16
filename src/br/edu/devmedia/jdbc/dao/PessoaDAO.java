@@ -104,14 +104,14 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
     }
 
     
-    public List<Pessoa> filtraPessoa(String nome, Long cpf, String sexo) throws PersistenciaException {
+    public List<Pessoa> filtraPessoa(String nome, Long cpf, String sexo, String ordem) throws PersistenciaException {
         List<Pessoa> listaPessoa = new ArrayList<Pessoa>();
         try {
             Connection connection = ConexaoUtil.getInstance().getConnection();
             String sql = "SELECT * FROM TB_PESSOA";
             boolean ultimo = false;
             if (nome != null && !nome.equals("")) {
-                sql += " WHERE NOME = ?";
+                sql += " WHERE NOME LIKE ?";
                 ultimo = true;
             }
             if (cpf != null && !cpf.equals("")) {
@@ -120,7 +120,7 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
                 }else{
                     sql +=" WHERE";
                 }
-                sql += "CPF = ?";
+                sql += "CPF LIKE ?";
             }
             if (sexo != null && !sexo.equals("")) {
                 if(ultimo){
@@ -131,13 +131,14 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
                 }
                 sql += " SEXO = ?";
             }
+            sql += "ORDER BY "+ ordem;
             PreparedStatement statement = connection.prepareStatement(sql);
             int contador = 0;
             if (nome != null && !nome.equals("")) {
-                statement.setString(++contador, nome);
+                statement.setString(++contador, "%"+nome+"%");
             }
             if (cpf != null && !cpf.equals("")) {
-                statement.setLong(++contador, cpf);
+                statement.setString(++contador, "%"+cpf+"%");
             }
             if (sexo != null && !sexo.equals("")) {
                 statement.setString(++contador, sexo);
