@@ -24,7 +24,7 @@ public class PessoaBO {
     }
 
     public String[][] listar() throws NegocioException {
-        int numeroColunas = 6;
+        int numeroColunas = 8;
         String[][] listaRetorno = null;
         try {
             PessoaDAO pessoaDAO = new PessoaDAO();
@@ -41,6 +41,10 @@ public class PessoaBO {
                 listaRetorno[i][3] = pessoa.getEndereco();
                 listaRetorno[i][4] = pessoa.getSexo() == 'M' ? "Masculino" : "Feminino";
                 listaRetorno[i][5] = formatador.format(pessoa.getDtNascimento());
+                listaRetorno[i][6] = "Deletar";
+                listaRetorno[i][7] = "Editar";
+            
+            
             }
 
         } catch (Exception e) {

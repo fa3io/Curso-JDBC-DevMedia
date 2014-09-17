@@ -3,17 +3,33 @@ package br.edu.devmedia.jdbc.gui;
 import br.edu.devmedia.jdbc.bo.PessoaBO;
 import br.edu.devmedia.jdbc.dto.Pessoa;
 import br.edu.devmedia.jdbc.util.MensagemUtil;
+import java.awt.Button;
+import java.awt.event.ActionEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import javax.swing.AbstractAction;
+import javax.swing.Action;
+import javax.swing.JOptionPane;
 
 public class MainFrame extends javax.swing.JFrame {
 
     DateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+    ButtonColumn buttonColummEdicao; 
+    ButtonColumn buttonColummDelecao;
+    
+    
+    
+    
+
+        
+        
 
     public MainFrame() {
         initComponents();
         rbMasculino.setSelected(true);
         rbMasculinoConsulta.setSelected(true);
+        buttonColummEdicao = new ButtonColumn(tbListagem, actionEdicao, 6);
+        buttonColummDelecao = new ButtonColumn(tbListagem, actionDelecao,7);
     }
 
     @SuppressWarnings("unchecked")
@@ -187,7 +203,7 @@ public class MainFrame extends javax.swing.JFrame {
             tbListagem.setModel(new javax.swing.table.DefaultTableModel(
                 listagem,
                 new String [] {
-                    "ID","Nome", "CPF", "Endereço", "Sexo", "Data Nascimento"
+                    "ID","Nome", "CPF", "Endereço", "Sexo", "Data Nascimento","",""
                 }
             ));
         }catch(Exception e){
@@ -202,7 +218,7 @@ public class MainFrame extends javax.swing.JFrame {
             panelListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListagemLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ScrollListagem, javax.swing.GroupLayout.DEFAULT_SIZE, 457, Short.MAX_VALUE)
+                .addComponent(ScrollListagem, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panelListagemLayout.setVerticalGroup(
@@ -296,7 +312,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(rbOrdemCpf)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btPesquisar)))
-                .addContainerGap(120, Short.MAX_VALUE))
+                .addContainerGap(286, Short.MAX_VALUE))
             .addGroup(panelConsultaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -344,7 +360,7 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane)
+                .addComponent(jTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -355,7 +371,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(528, 465));
+        setSize(new java.awt.Dimension(694, 465));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -418,8 +434,9 @@ public class MainFrame extends javax.swing.JFrame {
             MensagemUtil.adMesg(MainFrame.this, e.getMessage());
             e.printStackTrace();
         }
-
-
+        
+        
+        
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     public void limpar() {
@@ -429,6 +446,18 @@ public class MainFrame extends javax.swing.JFrame {
         txtDataNascimento.setText("");
         rbMasculino.setSelected(true);
     }
+    Action actionDelecao = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+               
+            }
+        };
+        Action actionEdicao = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+            
+            }
+        };
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
