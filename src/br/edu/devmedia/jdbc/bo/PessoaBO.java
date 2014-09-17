@@ -23,7 +23,7 @@ public class PessoaBO {
         }
     }
 
-    public String[][] listar() throws NegocioException {
+    public String[][] listar(List listaIds) throws NegocioException {
         int numeroColunas = 8;
         String[][] listaRetorno = null;
         try {
@@ -36,13 +36,14 @@ public class PessoaBO {
 
                 Pessoa pessoa = lista.get(i);
                 listaRetorno[i][0] = pessoa.getId().toString();
+                listaIds.add(pessoa.getId());
                 listaRetorno[i][1] = pessoa.getNome();
                 listaRetorno[i][2] = pessoa.getCfp().toString();
                 listaRetorno[i][3] = pessoa.getEndereco();
                 listaRetorno[i][4] = pessoa.getSexo() == 'M' ? "Masculino" : "Feminino";
                 listaRetorno[i][5] = formatador.format(pessoa.getDtNascimento());
-                listaRetorno[i][6] = "Deletar";
-                listaRetorno[i][7] = "Editar";
+                listaRetorno[i][6] = "Editar";
+                listaRetorno[i][7] = "Deletar";
             
             
             }
@@ -51,6 +52,16 @@ public class PessoaBO {
             throw new NegocioException(e.getMessage());
         }
         return listaRetorno;
+    }
+    
+    public void deletarPessoa(Integer id) throws NegocioException{
+        try {
+            PessoaDAO pessoaDAO = new PessoaDAO();
+            pessoaDAO.delete(id);
+            
+        } catch (Exception e) {
+            throw new NegocioException(e.getMessage());
+        }
     }
 
     public boolean validaNome(String nome) throws ValidacaoException {

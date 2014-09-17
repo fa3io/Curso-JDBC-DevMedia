@@ -2,20 +2,28 @@ package br.edu.devmedia.jdbc.gui;
 
 import br.edu.devmedia.jdbc.bo.PessoaBO;
 import br.edu.devmedia.jdbc.dto.Pessoa;
+import br.edu.devmedia.jdbc.exception.NegocioException;
 import br.edu.devmedia.jdbc.util.MensagemUtil;
 import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
 
     DateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
     ButtonColumn buttonColummEdicao; 
     ButtonColumn buttonColummDelecao;
+    private List<Integer> listaIds = new ArrayList();
     
     
     
@@ -199,7 +207,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         PessoaBO pessoaBo = new PessoaBO();
         try{
-            String [][] listagem = pessoaBo.listar();
+            String [][] listagem = pessoaBo.listar(listaIds);
             tbListagem.setModel(new javax.swing.table.DefaultTableModel(
                 listagem,
                 new String [] {
@@ -360,7 +368,7 @@ public class MainFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane, javax.swing.GroupLayout.DEFAULT_SIZE, 652, Short.MAX_VALUE)
+                .addComponent(jTabbedPane)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -446,20 +454,38 @@ public class MainFrame extends javax.swing.JFrame {
         txtDataNascimento.setText("");
         rbMasculino.setSelected(true);
     }
-    Action actionDelecao = new AbstractAction() {
+     Action actionEdicao = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-               
-            }
-        };
-        Action actionEdicao = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-            
+                int linha = Integer.parseInt(actionEvent.getActionCommand());
+                JOptionPane.showMessageDialog(MainFrame.this, linha);
             }
         };
 
-    public static void main(String args[]) {
+ 
+    Action actionDelecao = new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                
+                int linha = Integer.parseInt(actionEvent.getActionCommand());
+                
+                int confirmacao = JOptionPane.showConfirmDialog(MainFrame.this, "Deseja Realmente remover esta pessoa? ","Remoção de Pessoa" ,JOptionPane.OK_CANCEL_OPTION);
+               
+                if (confirmacao ==0) {
+                    JTable tabela = (JTable) actionEvent.getSource();
+                    ((DefaultTableModel)tabela.getModel()).removeRow(linha);   
+                    try {
+                        new PessoaBO().deletarPessoa(linha);
+                    } catch (NegocioException e) {
+                        MensagemUtil.adMesg(MainFrame.this, e.getMessage());
+                    }
+                    
+                }
+                
+                
+            }
+        };
+          public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
