@@ -22,27 +22,21 @@ import javax.swing.table.DefaultTableModel;
 public class MainFrame extends javax.swing.JFrame {
 
     DateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-    ButtonColumn buttonColummEdicao; 
+    ButtonColumn buttonColummEdicao;
     ButtonColumn buttonColummDelecao;
     private List<Integer> listaIds = new ArrayList();
-    
-    
-    
-    
-
-        
-        
 
     public MainFrame() {
         initComponents();
         rbMasculino.setSelected(true);
         rbMasculinoConsulta.setSelected(true);
         buttonColummEdicao = new ButtonColumn(tbListagem, actionEdicao, 6);
-        buttonColummDelecao = new ButtonColumn(tbListagem, actionDelecao,7);
-        
+        buttonColummDelecao = new ButtonColumn(tbListagem, actionDelecao, 7);
+
         //setando para efetuar deleção e edição por atalho de teclas
         buttonColummDelecao.setMnemonic(KeyEvent.VK_D);
         buttonColummDelecao.setMnemonic(KeyEvent.VK_E);
+        btnDeleteAll.setMnemonic(KeyEvent.VK_D);
     }
 
     @SuppressWarnings("unchecked")
@@ -71,6 +65,7 @@ public class MainFrame extends javax.swing.JFrame {
         panelListagem = new javax.swing.JPanel();
         ScrollListagem = new javax.swing.JScrollPane();
         tbListagem = new javax.swing.JTable();
+        btnDeleteAll = new javax.swing.JButton();
         panelConsulta = new javax.swing.JPanel();
         lbNomeConsulta = new javax.swing.JLabel();
         txtNomeConsulta = new javax.swing.JTextField();
@@ -225,20 +220,34 @@ public class MainFrame extends javax.swing.JFrame {
         }
         ScrollListagem.setViewportView(tbListagem);
 
+        btnDeleteAll.setIcon(new javax.swing.ImageIcon("C:\\Users\\Fábio\\Documents\\NetBeansProjects\\Curso JDBC DevMedia\\img\\delete-all.png")); // NOI18N
+        btnDeleteAll.setText("Deletar Tudo");
+        btnDeleteAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteAllActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelListagemLayout = new javax.swing.GroupLayout(panelListagem);
         panelListagem.setLayout(panelListagemLayout);
         panelListagemLayout.setHorizontalGroup(
             panelListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListagemLayout.createSequentialGroup()
+            .addGroup(panelListagemLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ScrollListagem, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+                .addGroup(panelListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(ScrollListagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListagemLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnDeleteAll)))
                 .addContainerGap())
         );
         panelListagemLayout.setVerticalGroup(
             panelListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelListagemLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ScrollListagem, javax.swing.GroupLayout.DEFAULT_SIZE, 336, Short.MAX_VALUE)
+                .addComponent(ScrollListagem, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnDeleteAll)
                 .addContainerGap())
         );
 
@@ -430,16 +439,13 @@ public class MainFrame extends javax.swing.JFrame {
             String nome = txtNomeConsulta.getText();
             Long cpf = txtCPFConsulta.getText().equals("") ? null : Long.parseLong(txtCPFConsulta.getText());
             char sexo = rbMasculinoConsulta.isSelected() ? 'M' : 'F';
-            String ordem  = rbOdemNome.isSelected() ? "NOME" : "CPF";
-            
+            String ordem = rbOdemNome.isSelected() ? "NOME" : "CPF";
+
             PessoaBO pessoaBO = new PessoaBO();
             String[][] listagemConsulta = pessoaBO.listaConsulta(nome, cpf, sexo, ordem);
-            
-            
-            
-            
+
             tbListagemConsulta.setModel(new javax.swing.table.DefaultTableModel(
-                   listagemConsulta,
+                    listagemConsulta,
                     new String[]{
                         "ID", "Nome", "CPF", "Endereço", "Sexo", "Data Nascimento"
                     }));
@@ -447,10 +453,41 @@ public class MainFrame extends javax.swing.JFrame {
             MensagemUtil.adMesg(MainFrame.this, e.getMessage());
             e.printStackTrace();
         }
-        
-        
-        
+
+
     }//GEN-LAST:event_btPesquisarActionPerformed
+
+    private void btnDeleteAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAllActionPerformed
+        PessoaBO pessoaBO = new PessoaBO();
+        try {
+            int confirmacao = JOptionPane.showConfirmDialog(MainFrame.this, "Deseja Realmente remover esta pessoa? ", "Remoção de Pessoa", JOptionPane.OK_CANCEL_OPTION);
+
+            if (confirmacao == 0) {
+                pessoaBO.removeAll();
+                MensagemUtil.adMesg(MainFrame.this, "Pessoas Removidas com Sucesso!!!");
+
+                //carregando novamente a tabela ficou um codigo extenso e repetitivo
+                PessoaBO pessoaBo = new PessoaBO();
+                try {
+                    String[][] listagem = pessoaBo.listar(listaIds);
+                    tbListagem.setModel(new javax.swing.table.DefaultTableModel(
+                            listagem,
+                            new String[]{
+                                "ID", "Nome", "CPF", "Endereço", "Sexo", "Data Nascimento", "", ""
+                            }
+                    ));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    MensagemUtil.adMesg(MainFrame.this, e.getMessage());
+                }
+
+            }
+        } catch (NegocioException e) {
+            MensagemUtil.adMesg(MainFrame.this, e.getMessage());
+            e.printStackTrace();
+        }
+
+    }//GEN-LAST:event_btnDeleteAllActionPerformed
 
     public void limpar() {
         txtNome.setText("");
@@ -459,40 +496,39 @@ public class MainFrame extends javax.swing.JFrame {
         txtDataNascimento.setText("");
         rbMasculino.setSelected(true);
     }
-     Action actionEdicao = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                int linha = Integer.parseInt(actionEvent.getActionCommand());
-                JOptionPane.showMessageDialog(MainFrame.this, linha);
-            }
-        };
+    Action actionEdicao = new AbstractAction() {
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+            int linha = Integer.parseInt(actionEvent.getActionCommand());
+            JOptionPane.showMessageDialog(MainFrame.this, linha);
+        }
+    };
 
- 
     Action actionDelecao = new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                
-                int linha = Integer.parseInt(actionEvent.getActionCommand());
-                
-                int confirmacao = JOptionPane.showConfirmDialog(MainFrame.this, "Deseja Realmente remover esta pessoa? ","Remoção de Pessoa" ,JOptionPane.OK_CANCEL_OPTION);
-               
-                if (confirmacao == 0) {
-                    JTable tabela = (JTable) actionEvent.getSource();
-                    ((DefaultTableModel)tabela.getModel()).removeRow(linha);   
-                    try {
-                        new PessoaBO().deletarPessoa(listaIds.get(linha));
-                        listaIds.remove(linha);
-                        MensagemUtil.adMesg(MainFrame.this, "Pessoa Removida com sucesso!!!");
-                    } catch (NegocioException e) {
-                        MensagemUtil.adMesg(MainFrame.this, e.getMessage());
-                    }
-                    
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+
+            int linha = Integer.parseInt(actionEvent.getActionCommand());
+
+            int confirmacao = JOptionPane.showConfirmDialog(MainFrame.this, "Deseja Realmente remover esta pessoa? ", "Remoção de Pessoa", JOptionPane.OK_CANCEL_OPTION);
+
+            if (confirmacao == 0) {
+                JTable tabela = (JTable) actionEvent.getSource();
+                ((DefaultTableModel) tabela.getModel()).removeRow(linha);
+                try {
+                    new PessoaBO().deletarPessoa(listaIds.get(linha));
+                    listaIds.remove(linha);
+                    MensagemUtil.adMesg(MainFrame.this, "Pessoa Removida com sucesso!!!");
+                } catch (NegocioException e) {
+                    MensagemUtil.adMesg(MainFrame.this, e.getMessage());
                 }
-                
-                
+
             }
-        };
-          public static void main(String args[]) {
+
+        }
+    };
+
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -532,6 +568,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btgOrdemConsulta;
     private javax.swing.ButtonGroup btgSexo;
     private javax.swing.ButtonGroup btgSexoConsulta;
+    private javax.swing.JButton btnDeleteAll;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane;

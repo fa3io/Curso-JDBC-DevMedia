@@ -63,6 +63,15 @@ public class PessoaBO {
             throw new NegocioException(e.getMessage());
         }
     }
+    
+    public void removeAll() throws NegocioException{
+        try {
+            PessoaDAO pessoaDAO = new PessoaDAO();
+            pessoaDAO.deleteAll();
+        } catch (Exception e) {
+            throw new NegocioException(e.getMessage());
+        }
+    }
 
     public boolean validaNome(String nome) throws ValidacaoException {
         boolean ehValido = true;

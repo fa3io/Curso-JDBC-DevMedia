@@ -75,6 +75,21 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
         }
     }
 
+    public void deleteAll() throws PersistenciaException {
+        try {
+
+            Connection connection = ConexaoUtil.getInstance().getConnection();
+            String sql = "DELETE * FROM TB_PESSOA ";
+            PreparedStatement statement = connection.prepareStatement(sql);
+            statement.execute();
+            connection.close();
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new PersistenciaException(e.getMessage(), e);
+        }
+    }
+
     @Override
     public List<Pessoa> listarTodos() throws PersistenciaException {
         List<Pessoa> listaPessoa = new ArrayList<Pessoa>();
@@ -103,7 +118,6 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
         return listaPessoa;
     }
 
-    
     public List<Pessoa> filtraPessoa(String nome, Long cpf, String sexo, String ordem) throws PersistenciaException {
         List<Pessoa> listaPessoa = new ArrayList<Pessoa>();
         try {
@@ -115,30 +129,30 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
                 ultimo = true;
             }
             if (cpf != null && !cpf.equals("")) {
-                if(ultimo){
+                if (ultimo) {
                     sql += " AND";
-                }else{
-                    sql +=" WHERE";
+                } else {
+                    sql += " WHERE";
                 }
                 sql += "CPF LIKE ?";
             }
             if (sexo != null && !sexo.equals("")) {
-                if(ultimo){
+                if (ultimo) {
                     sql += " AND";
-                }else{
-                    sql +=" WHERE";
+                } else {
+                    sql += " WHERE";
                     ultimo = true;
                 }
                 sql += " SEXO = ?";
             }
-            sql += "ORDER BY "+ ordem;
+            sql += "ORDER BY " + ordem;
             PreparedStatement statement = connection.prepareStatement(sql);
             int contador = 0;
             if (nome != null && !nome.equals("")) {
-                statement.setString(++contador, "%"+nome+"%");
+                statement.setString(++contador, "%" + nome + "%");
             }
             if (cpf != null && !cpf.equals("")) {
-                statement.setString(++contador, "%"+cpf+"%");
+                statement.setString(++contador, "%" + cpf + "%");
             }
             if (sexo != null && !sexo.equals("")) {
                 statement.setString(++contador, sexo);
@@ -158,8 +172,8 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
             }
 
         } catch (Exception e) {
-           e.printStackTrace();
-           throw new PersistenciaException(e.getMessage(), e);
+            e.printStackTrace();
+            throw new PersistenciaException(e.getMessage(), e);
 
         }
         return listaPessoa;
