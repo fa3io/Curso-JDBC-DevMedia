@@ -6,6 +6,7 @@ import br.edu.devmedia.jdbc.exception.NegocioException;
 import br.edu.devmedia.jdbc.util.MensagemUtil;
 import java.awt.Button;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,6 +39,10 @@ public class MainFrame extends javax.swing.JFrame {
         rbMasculinoConsulta.setSelected(true);
         buttonColummEdicao = new ButtonColumn(tbListagem, actionEdicao, 6);
         buttonColummDelecao = new ButtonColumn(tbListagem, actionDelecao,7);
+        
+        //setando para efetuar deleção e edição por atalho de teclas
+        buttonColummDelecao.setMnemonic(KeyEvent.VK_D);
+        buttonColummDelecao.setMnemonic(KeyEvent.VK_E);
     }
 
     @SuppressWarnings("unchecked")
@@ -471,11 +476,13 @@ public class MainFrame extends javax.swing.JFrame {
                 
                 int confirmacao = JOptionPane.showConfirmDialog(MainFrame.this, "Deseja Realmente remover esta pessoa? ","Remoção de Pessoa" ,JOptionPane.OK_CANCEL_OPTION);
                
-                if (confirmacao ==0) {
+                if (confirmacao == 0) {
                     JTable tabela = (JTable) actionEvent.getSource();
                     ((DefaultTableModel)tabela.getModel()).removeRow(linha);   
                     try {
-                        new PessoaBO().deletarPessoa(linha);
+                        new PessoaBO().deletarPessoa(listaIds.get(linha));
+                        listaIds.remove(linha);
+                        MensagemUtil.adMesg(MainFrame.this, "Pessoa Removida com sucesso!!!");
                     } catch (NegocioException e) {
                         MensagemUtil.adMesg(MainFrame.this, e.getMessage());
                     }
