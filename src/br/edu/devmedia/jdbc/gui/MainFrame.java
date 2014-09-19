@@ -4,27 +4,26 @@ import br.edu.devmedia.jdbc.bo.PessoaBO;
 import br.edu.devmedia.jdbc.dto.Pessoa;
 import br.edu.devmedia.jdbc.exception.NegocioException;
 import br.edu.devmedia.jdbc.util.MensagemUtil;
-import java.awt.Button;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
+import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 public class MainFrame extends javax.swing.JFrame {
 
-    DateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
-    ButtonColumn buttonColummEdicao;
-    ButtonColumn buttonColummDelecao;
+    private DateFormat formatador = new SimpleDateFormat("dd/MM/yyyy");
+    private ButtonColumn buttonColummEdicao;
+    private ButtonColumn buttonColummDelecao;
     private List<Integer> listaIds = new ArrayList();
+    private InternalUpdate internalUpdate;
 
     public MainFrame() {
         initComponents();
@@ -37,6 +36,9 @@ public class MainFrame extends javax.swing.JFrame {
         buttonColummDelecao.setMnemonic(KeyEvent.VK_D);
         buttonColummDelecao.setMnemonic(KeyEvent.VK_E);
         btnDeleteAll.setMnemonic(KeyEvent.VK_D);
+        
+        panelInternalFrame.add(getInternalUpdate());
+        internalUpdate.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -66,6 +68,7 @@ public class MainFrame extends javax.swing.JFrame {
         ScrollListagem = new javax.swing.JScrollPane();
         tbListagem = new javax.swing.JTable();
         btnDeleteAll = new javax.swing.JButton();
+        panelInternalFrame = new javax.swing.JPanel();
         panelConsulta = new javax.swing.JPanel();
         lbNomeConsulta = new javax.swing.JLabel();
         txtNomeConsulta = new javax.swing.JTextField();
@@ -228,6 +231,17 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout panelInternalFrameLayout = new javax.swing.GroupLayout(panelInternalFrame);
+        panelInternalFrame.setLayout(panelInternalFrameLayout);
+        panelInternalFrameLayout.setHorizontalGroup(
+            panelInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 395, Short.MAX_VALUE)
+        );
+        panelInternalFrameLayout.setVerticalGroup(
+            panelInternalFrameLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout panelListagemLayout = new javax.swing.GroupLayout(panelListagem);
         panelListagem.setLayout(panelListagemLayout);
         panelListagemLayout.setHorizontalGroup(
@@ -235,20 +249,25 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(panelListagemLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(ScrollListagem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelListagemLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnDeleteAll)))
+                    .addGroup(panelListagemLayout.createSequentialGroup()
+                        .addComponent(ScrollListagem, javax.swing.GroupLayout.PREFERRED_SIZE, 498, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(panelInternalFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(panelListagemLayout.createSequentialGroup()
+                        .addComponent(btnDeleteAll)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         panelListagemLayout.setVerticalGroup(
             panelListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelListagemLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(ScrollListagem, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panelListagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelInternalFrame, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(ScrollListagem, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnDeleteAll)
-                .addContainerGap())
+                .addGap(24, 24, 24))
         );
 
         jTabbedPane.addTab("Listagem", null, panelListagem, "Listagem de  Clientes");
@@ -334,7 +353,7 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addComponent(rbOrdemCpf)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btPesquisar)))
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(574, Short.MAX_VALUE))
             .addGroup(panelConsultaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -393,7 +412,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        setSize(new java.awt.Dimension(694, 465));
+        setSize(new java.awt.Dimension(982, 465));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -460,7 +479,7 @@ public class MainFrame extends javax.swing.JFrame {
     private void btnDeleteAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteAllActionPerformed
         PessoaBO pessoaBO = new PessoaBO();
         try {
-            int confirmacao = JOptionPane.showConfirmDialog(MainFrame.this, "Deseja Realmente remover esta pessoa? ", "Remoção de Pessoa", JOptionPane.OK_CANCEL_OPTION);
+            int confirmacao = JOptionPane.showConfirmDialog(MainFrame.this, "Deseja Realmente remover TODAS as pessoas? ", "Remoção de Pessoa", JOptionPane.OK_CANCEL_OPTION);
 
             if (confirmacao == 0) {
                 pessoaBO.removeAll();
@@ -527,6 +546,12 @@ public class MainFrame extends javax.swing.JFrame {
 
         }
     };
+    
+    private JInternalFrame getInternalUpdate(){
+         internalUpdate = new InternalUpdate();
+        internalUpdate.setVisible(true);
+        return internalUpdate;
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -583,6 +608,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel lbSexoConsulta;
     private javax.swing.JPanel panelCadastro;
     private javax.swing.JPanel panelConsulta;
+    private javax.swing.JPanel panelInternalFrame;
     private javax.swing.JPanel panelListagem;
     private javax.swing.JRadioButton rbFeminino;
     private javax.swing.JRadioButton rbFemininoConsulta;
