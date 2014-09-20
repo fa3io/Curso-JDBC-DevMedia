@@ -162,5 +162,24 @@ public class PessoaBO {
         }
        return listaRetorno;
     }
+     
+     public Pessoa buscaPorId(Integer id) throws NegocioException{
+       Pessoa pessoa = new Pessoa();
+         try {
+             pessoa = new PessoaDAO().buscaPorId(id);
+         } catch (Exception e) {
+             throw new NegocioException(e.getMessage());
+         }
+         return pessoa;
+     }
+     
+     public void atualizar(Pessoa pessoa) throws NegocioException{
+         try {
+             PessoaDAO pessoaDAO = new PessoaDAO();
+             pessoaDAO.atualizar(pessoa);
+         } catch (Exception e) {
+             throw new NegocioException(e.getMessage());
+         }
+     }
 
 }

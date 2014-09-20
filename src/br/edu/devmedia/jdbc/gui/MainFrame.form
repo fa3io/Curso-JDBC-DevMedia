@@ -322,6 +322,7 @@
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JTable()"/>
                     <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="PessoaBO pessoaBo = new PessoaBO();&#xa;try{&#xa;String [][] listagem = pessoaBo.listar(listaIds);"/>
+                    <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="4"/>
                   </AuxValues>
                 </Component>
               </SubComponents>

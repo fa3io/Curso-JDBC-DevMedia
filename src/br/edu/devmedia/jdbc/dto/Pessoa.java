@@ -59,6 +59,13 @@ public class Pessoa {
 	public void setDtNascimento(Date dtNascimento) {
 		this.dtNascimento = dtNascimento;
 	}
+
+    @Override
+    public String toString() {
+        return getId()+" - "+getNome()+" - "+getCfp();
+    }
+        
+        
 	
 	
 

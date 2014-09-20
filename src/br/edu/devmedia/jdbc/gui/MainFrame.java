@@ -36,7 +36,7 @@ public class MainFrame extends javax.swing.JFrame {
         buttonColummDelecao.setMnemonic(KeyEvent.VK_D);
         buttonColummDelecao.setMnemonic(KeyEvent.VK_E);
         btnDeleteAll.setMnemonic(KeyEvent.VK_D);
-        
+
         panelInternalFrame.add(getInternalUpdate());
         internalUpdate.setVisible(false);
     }
@@ -439,8 +439,9 @@ public class MainFrame extends javax.swing.JFrame {
             char sexo = rbMasculino.isSelected() ? 'M' : 'F';
             pessoa.setSexo(sexo);
 
-            MensagemUtil.adMesg(MainFrame.this, "Cadastro Efetuado com Sucesso!!!");
+            
             pessoaBO.Cadastrar(pessoa);
+            MensagemUtil.adMesg(MainFrame.this, "Cadastro Efetuado com Sucesso!!!");
             MainFrame.this.dispose();
             MainFrame.this.main(null);
         } catch (Exception e) {
@@ -519,7 +520,13 @@ public class MainFrame extends javax.swing.JFrame {
         @Override
         public void actionPerformed(ActionEvent actionEvent) {
             int linha = Integer.parseInt(actionEvent.getActionCommand());
-            JOptionPane.showMessageDialog(MainFrame.this, linha);
+            try {
+                PessoaBO pessoaBO = new PessoaBO();
+                Pessoa pessoa = pessoaBO.buscaPorId(listaIds.get(linha));
+                populaInternalFrame(pessoa);
+            } catch (NegocioException e) {
+                MensagemUtil.adMesg(MainFrame.this, e.getMessage());
+            }
         }
     };
 
@@ -546,11 +553,42 @@ public class MainFrame extends javax.swing.JFrame {
 
         }
     };
-    
-    private JInternalFrame getInternalUpdate(){
-         internalUpdate = new InternalUpdate();
+
+    private void populaInternalFrame(Pessoa pessoa) {
+        internalUpdate.lbIdValorUpdate.setText(pessoa.getId().toString());
+        internalUpdate.txtNomeUpdate.setText(pessoa.getNome());
+        internalUpdate.txtCPFUpdate.setText(pessoa.getCfp().toString());
+        internalUpdate.txtEnderecoUpdate.setText(pessoa.getEndereco());
+        internalUpdate.txtDataNascimentoUpdate.setText(formatador.format(pessoa.getDtNascimento()));
+        if (pessoa.getSexo() == 'M') {
+            internalUpdate.rbMasculinoUpdate.setSelected(true);
+        } else {
+            internalUpdate.rbFemininoUpdate.setSelected(true);
+        }
+        internalUpdate.setVisible(true);
+
+    }
+
+    private JInternalFrame getInternalUpdate() {
+        internalUpdate = new InternalUpdate(this);
         internalUpdate.setVisible(true);
         return internalUpdate;
+    }
+
+    public void getTable() {
+        try {
+            PessoaBO pessoaBO = new PessoaBO();
+            String[][] listagem = pessoaBO.listar(listaIds);
+            this.tbListagem.setModel(new javax.swing.table.DefaultTableModel(
+                    listagem,
+                    new String[]{
+                        "ID", "Nome", "CPF", "Endereço", "Sexo", "Data Nascimento", "", ""
+                    }
+            ));
+        } catch (Exception e) {
+            e.printStackTrace();
+            MensagemUtil.adMesg(MainFrame.this, e.getMessage());
+        }
     }
 
     public static void main(String args[]) {
@@ -617,7 +655,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbOdemNome;
     private javax.swing.JRadioButton rbOrdemCpf;
     private javax.swing.JScrollPane scrollConsulta;
-    private javax.swing.JTable tbListagem;
+    protected javax.swing.JTable tbListagem;
     private javax.swing.JTable tbListagemConsulta;
     private javax.swing.JTextField txtCPF;
     private javax.swing.JTextField txtCPFConsulta;

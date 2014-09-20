@@ -79,7 +79,7 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
         try {
 
             Connection connection = ConexaoUtil.getInstance().getConnection();
-            String sql = "DELETE * FROM TB_PESSOA ";
+            String sql = "DELETE  FROM TB_PESSOA ";
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.execute();
             connection.close();
@@ -205,7 +205,7 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
             e.printStackTrace();
             throw new PersistenciaException(e.getMessage(), e);
         }
-        return null;
+        return pessoa;
     }
 
 }
