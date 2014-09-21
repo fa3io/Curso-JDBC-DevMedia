@@ -10,7 +10,8 @@ public class Pessoa {
 	private String endereco;
 	private Character sexo;
 	private Date dtNascimento;
-	
+        private Endereco enderecoDTO;
+        
 	public Pessoa() {
 		
 	}
@@ -64,6 +65,15 @@ public class Pessoa {
     public String toString() {
         return getId()+" - "+getNome()+" - "+getCfp();
     }
+
+    public Endereco getEnderecoDTO() {
+        return enderecoDTO;
+    }
+
+    public void setEnderecoDTO(Endereco enderecoDTO) {
+        this.enderecoDTO = enderecoDTO;
+    }
+    
         
         
 	
