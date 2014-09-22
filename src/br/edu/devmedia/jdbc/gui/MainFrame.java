@@ -1,7 +1,9 @@
 package br.edu.devmedia.jdbc.gui;
 
 import br.edu.devmedia.jdbc.bo.PessoaBO;
+import br.edu.devmedia.jdbc.bo.UfBO;
 import br.edu.devmedia.jdbc.dto.Pessoa;
+import br.edu.devmedia.jdbc.dto.Uf;
 import br.edu.devmedia.jdbc.exception.NegocioException;
 import br.edu.devmedia.jdbc.util.MensagemUtil;
 import java.awt.event.ActionEvent;
@@ -10,6 +12,8 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.JInternalFrame;
@@ -64,67 +68,76 @@ public class MainFrame extends javax.swing.JFrame {
         rbMasculino = new javax.swing.JRadioButton();
         rbFeminino = new javax.swing.JRadioButton();
         lbExemploData = new javax.swing.JLabel();
-        panelListagem = new javax.swing.JPanel();
-        ScrollListagem = new javax.swing.JScrollPane();
-        tbListagem = new javax.swing.JTable();
-        btnDeleteAll = new javax.swing.JButton();
-        panelInternalFrame = new javax.swing.JPanel();
-        panelConsulta = new javax.swing.JPanel();
-        lbNomeConsulta = new javax.swing.JLabel();
-        txtNomeConsulta = new javax.swing.JTextField();
-        lbCPFConsulta = new javax.swing.JLabel();
-        txtCPFConsulta = new javax.swing.JTextField();
-        lbSexoConsulta = new javax.swing.JLabel();
-        rbMasculinoConsulta = new javax.swing.JRadioButton();
-        rbFemininoConsulta = new javax.swing.JRadioButton();
-        btPesquisar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        scrollConsulta = new javax.swing.JScrollPane();
-        tbListagemConsulta = new javax.swing.JTable();
-        lbOrdem = new javax.swing.JLabel();
-        rbOdemNome = new javax.swing.JRadioButton();
-        rbOrdemCpf = new javax.swing.JRadioButton();
+        try{
+            cbUf = new javax.swing.JComboBox();
+            panelListagem = new javax.swing.JPanel();
+            ScrollListagem = new javax.swing.JScrollPane();
+            tbListagem = new javax.swing.JTable();
+            btnDeleteAll = new javax.swing.JButton();
+            panelInternalFrame = new javax.swing.JPanel();
+            panelConsulta = new javax.swing.JPanel();
+            lbNomeConsulta = new javax.swing.JLabel();
+            txtNomeConsulta = new javax.swing.JTextField();
+            lbCPFConsulta = new javax.swing.JLabel();
+            txtCPFConsulta = new javax.swing.JTextField();
+            lbSexoConsulta = new javax.swing.JLabel();
+            rbMasculinoConsulta = new javax.swing.JRadioButton();
+            rbFemininoConsulta = new javax.swing.JRadioButton();
+            btPesquisar = new javax.swing.JButton();
+            jPanel1 = new javax.swing.JPanel();
+            scrollConsulta = new javax.swing.JScrollPane();
+            tbListagemConsulta = new javax.swing.JTable();
+            lbOrdem = new javax.swing.JLabel();
+            rbOdemNome = new javax.swing.JRadioButton();
+            rbOrdemCpf = new javax.swing.JRadioButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("MainFrame");
-        setName("MainFrame"); // NOI18N
-        setResizable(false);
+            setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+            setTitle("MainFrame");
+            setName("MainFrame"); // NOI18N
+            setResizable(false);
 
-        jTabbedPane.setName("painelCadastro"); // NOI18N
+            jTabbedPane.setName("painelCadastro"); // NOI18N
 
-        lbNome.setText("Nome:");
+            lbNome.setText("Nome:");
 
-        lbCPF.setText("CPF:");
+            lbCPF.setText("CPF:");
 
-        lbEndereco.setText("Endereço:");
+            lbEndereco.setText("Endereço:");
 
-        lbSexo.setText("Sexo");
+            lbSexo.setText("Sexo");
 
-        jLabel5.setText("Data Nas.");
+            jLabel5.setText("Data Nas.");
 
-        btOk.setIcon(new javax.swing.ImageIcon("C:\\workspace\\Curso JDBC DevMedia\\img\\save.png")); // NOI18N
-        btOk.setText("Cadastrar");
-        btOk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btOkActionPerformed(evt);
-            }
-        });
+            btOk.setIcon(new javax.swing.ImageIcon("C:\\workspace\\Curso JDBC DevMedia\\img\\save.png")); // NOI18N
+            btOk.setText("Cadastrar");
+            btOk.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btOkActionPerformed(evt);
+                }
+            });
 
-        btLimpar.setIcon(new javax.swing.ImageIcon("C:\\workspace\\Curso JDBC DevMedia\\img\\broompng.png")); // NOI18N
-        btLimpar.setText("Limpar");
-        btLimpar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btLimparActionPerformed(evt);
-            }
-        });
+            btLimpar.setIcon(new javax.swing.ImageIcon("C:\\workspace\\Curso JDBC DevMedia\\img\\broompng.png")); // NOI18N
+            btLimpar.setText("Limpar");
+            btLimpar.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    btLimparActionPerformed(evt);
+                }
+            });
 
-        btgSexo.add(rbMasculino);
-        rbMasculino.setText("Masculino");
+            btgSexo.add(rbMasculino);
+            rbMasculino.setText("Masculino");
 
-        btgSexo.add(rbFeminino);
-        rbFeminino.setText("Femino");
+            btgSexo.add(rbFeminino);
+            rbFeminino.setText("Femino");
 
-        lbExemploData.setText("(DD/MM/YYYY)");
+            lbExemploData.setText("(DD/MM/YYYY)");
+
+            UfBO ufBO = new UfBO();
+            cbUf.setModel(new javax.swing.DefaultComboBoxModel(converEstados(ufBO.listaEstados())));
+        } catch (Exception e) {
+            MensagemUtil.adMesg(MainFrame.this, e.getMessage());
+            e.printStackTrace();
+        }
 
         javax.swing.GroupLayout panelCadastroLayout = new javax.swing.GroupLayout(panelCadastro);
         panelCadastro.setLayout(panelCadastroLayout);
@@ -142,10 +155,6 @@ public class MainFrame extends javax.swing.JFrame {
                         .addGap(16, 16, 16)
                         .addComponent(txtCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panelCadastroLayout.createSequentialGroup()
-                        .addComponent(lbEndereco)
-                        .addGap(5, 5, 5)
-                        .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelCadastroLayout.createSequentialGroup()
                         .addComponent(lbSexo)
                         .addGap(35, 35, 35)
                         .addComponent(rbMasculino)
@@ -156,10 +165,16 @@ public class MainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDataNascimento, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lbExemploData)))
-                .addGap(77, 77, 77))
+                        .addComponent(lbExemploData))
+                    .addGroup(panelCadastroLayout.createSequentialGroup()
+                        .addComponent(lbEndereco)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cbUf, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(369, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelCadastroLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btOk)
                 .addGap(18, 18, 18)
                 .addComponent(btLimpar)
@@ -183,7 +198,9 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(7, 7, 7)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbEndereco)
-                    .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtEndereco, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbUf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(13, 13, 13)
                 .addGroup(panelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbSexo)
@@ -590,6 +607,16 @@ public class MainFrame extends javax.swing.JFrame {
             MensagemUtil.adMesg(MainFrame.this, e.getMessage());
         }
     }
+    
+    private String[] converEstados(List<Uf> estados){
+        String[] vetorEstados = new String[estados.size()];
+        for (int i = 0; i < estados.size(); i++) {
+            Uf uf = estados.get(i);
+            vetorEstados[i] = uf.getDescricao();
+        }
+ 
+         return vetorEstados;   
+    }
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -632,6 +659,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup btgSexo;
     private javax.swing.ButtonGroup btgSexoConsulta;
     private javax.swing.JButton btnDeleteAll;
+    private javax.swing.JComboBox cbUf;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTabbedPane jTabbedPane;
