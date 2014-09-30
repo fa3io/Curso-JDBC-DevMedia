@@ -41,26 +41,35 @@ public class InternalUpdate extends javax.swing.JInternalFrame {
         txtNomeUpdate = new javax.swing.JTextField();
         lbCPFUpdate = new javax.swing.JLabel();
         txtCPFUpdate = new javax.swing.JTextField();
-        lbEnderecoUpdate = new javax.swing.JLabel();
-        txtEnderecoUpdate = new javax.swing.JTextField();
         lbSexoUpdate = new javax.swing.JLabel();
         rbMasculinoUpdate = new javax.swing.JRadioButton();
         rbFemininoUpdate = new javax.swing.JRadioButton();
         lbNascimentoUpdate = new javax.swing.JLabel();
         txtDataNascimentoUpdate = new javax.swing.JTextField();
         lbExemploDataUpdate = new javax.swing.JLabel();
-        btOkUpdate = new javax.swing.JButton();
-        btLimparUpdate = new javax.swing.JButton();
         lbIdUpdate = new javax.swing.JLabel();
         lbIdValorUpdate = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lbLogradouroUpdate = new javax.swing.JLabel();
+        lbBairroUpdate = new javax.swing.JLabel();
+        lbCidadeUpdate = new javax.swing.JLabel();
+        lbNumeroUpdate = new javax.swing.JLabel();
+        lbCepUpdate = new javax.swing.JLabel();
+        lbUfUpdate = new javax.swing.JLabel();
+        txtLogradouroUpdate = new javax.swing.JTextField();
+        txtBairroUpdate = new javax.swing.JTextField();
+        txtCidadeUpdate = new javax.swing.JTextField();
+        txtNumeroUpdate = new javax.swing.JTextField();
+        txtCepUpdate = new javax.swing.JTextField();
+        cbUfUpdate = new javax.swing.JComboBox();
+        btOkUpdate = new javax.swing.JButton();
+        btLimparUpdate = new javax.swing.JButton();
 
-        painelUpdate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        painelUpdate.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Edição De Pessoa"));
 
         lbNomeUpdate.setText("Nome:");
 
         lbCPFUpdate.setText("CPF:");
-
-        lbEnderecoUpdate.setText("Endereço:");
 
         lbSexoUpdate.setText("Sexo");
 
@@ -74,6 +83,91 @@ public class InternalUpdate extends javax.swing.JInternalFrame {
 
         lbExemploDataUpdate.setText("(DD/MM/YYYY)");
 
+        lbIdUpdate.setText("ID:");
+
+        javax.swing.GroupLayout painelUpdateLayout = new javax.swing.GroupLayout(painelUpdate);
+        painelUpdate.setLayout(painelUpdateLayout);
+        painelUpdateLayout.setHorizontalGroup(
+            painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelUpdateLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelUpdateLayout.createSequentialGroup()
+                        .addComponent(lbCPFUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtCPFUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelUpdateLayout.createSequentialGroup()
+                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbNomeUpdate)
+                            .addComponent(lbIdUpdate))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lbIdValorUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNomeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(painelUpdateLayout.createSequentialGroup()
+                        .addComponent(lbNascimentoUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtDataNascimentoUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(lbExemploDataUpdate))
+                    .addGroup(painelUpdateLayout.createSequentialGroup()
+                        .addComponent(lbSexoUpdate)
+                        .addGap(35, 35, 35)
+                        .addComponent(rbMasculinoUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbFemininoUpdate)
+                        .addGap(89, 89, 89)))
+                .addGap(57, 57, 57))
+        );
+        painelUpdateLayout.setVerticalGroup(
+            painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelUpdateLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelUpdateLayout.createSequentialGroup()
+                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lbIdUpdate)
+                            .addComponent(lbIdValorUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbNomeUpdate)
+                            .addComponent(txtNomeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbCPFUpdate)
+                            .addComponent(txtCPFUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(painelUpdateLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbSexoUpdate)
+                            .addComponent(rbMasculinoUpdate)
+                            .addComponent(rbFemininoUpdate))
+                        .addGap(2, 2, 2)
+                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbNascimentoUpdate)
+                            .addComponent(txtDataNascimentoUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbExemploDataUpdate))))
+                .addGap(137, 137, 137))
+        );
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Edição De Endereço"));
+
+        lbLogradouroUpdate.setText("Logradouro:");
+
+        lbBairroUpdate.setText("Bairro:");
+
+        lbCidadeUpdate.setText("Cidade:");
+
+        lbNumeroUpdate.setText("Numero:");
+
+        lbCepUpdate.setText("CEP:");
+
+        lbUfUpdate.setText("UF:");
+
+        cbUfUpdate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         btOkUpdate.setIcon(new javax.swing.ImageIcon("C:\\Users\\Fábio\\Documents\\NetBeansProjects\\Curso JDBC DevMedia\\img\\edit.png")); // NOI18N
         btOkUpdate.setText("Editar");
         btOkUpdate.addActionListener(new java.awt.event.ActionListener() {
@@ -85,89 +179,72 @@ public class InternalUpdate extends javax.swing.JInternalFrame {
         btLimparUpdate.setIcon(new javax.swing.ImageIcon("C:\\Users\\Fábio\\Documents\\NetBeansProjects\\Curso JDBC DevMedia\\img\\cancel.png")); // NOI18N
         btLimparUpdate.setText("Cancelar");
 
-        lbIdUpdate.setText("ID:");
-
-        javax.swing.GroupLayout painelUpdateLayout = new javax.swing.GroupLayout(painelUpdate);
-        painelUpdate.setLayout(painelUpdateLayout);
-        painelUpdateLayout.setHorizontalGroup(
-            painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelUpdateLayout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelUpdateLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btOkUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btLimparUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painelUpdateLayout.createSequentialGroup()
-                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(painelUpdateLayout.createSequentialGroup()
-                                .addComponent(lbNascimentoUpdate)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDataNascimentoUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(lbExemploDataUpdate))
-                            .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(painelUpdateLayout.createSequentialGroup()
-                                    .addComponent(lbCPFUpdate)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(txtCPFUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(painelUpdateLayout.createSequentialGroup()
-                                    .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lbEnderecoUpdate)
-                                        .addComponent(lbSexoUpdate))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(painelUpdateLayout.createSequentialGroup()
-                                            .addComponent(rbMasculinoUpdate)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(rbFemininoUpdate))
-                                        .addComponent(txtEnderecoUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(painelUpdateLayout.createSequentialGroup()
-                                    .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lbNomeUpdate)
-                                        .addComponent(lbIdUpdate))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lbIdValorUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(txtNomeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 62, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbLogradouroUpdate)
+                    .addComponent(lbBairroUpdate)
+                    .addComponent(lbCidadeUpdate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtLogradouroUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                    .addComponent(txtBairroUpdate)
+                    .addComponent(txtCidadeUpdate))
+                .addGap(85, 85, 85)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbNumeroUpdate)
+                    .addComponent(lbCepUpdate)
+                    .addComponent(lbUfUpdate))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtCepUpdate)
+                    .addComponent(txtNumeroUpdate)
+                    .addComponent(cbUfUpdate, 0, 127, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btOkUpdate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btLimparUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
-        painelUpdateLayout.setVerticalGroup(
-            painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelUpdateLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lbIdUpdate)
-                    .addComponent(lbIdValorUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbNomeUpdate)
-                    .addComponent(txtNomeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbCPFUpdate)
-                    .addComponent(txtCPFUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbEnderecoUpdate)
-                    .addComponent(txtEnderecoUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
-                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbSexoUpdate)
-                    .addComponent(rbMasculinoUpdate)
-                    .addComponent(rbFemininoUpdate))
-                .addGap(2, 2, 2)
-                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbNascimentoUpdate)
-                    .addComponent(txtDataNascimentoUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbExemploDataUpdate))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btLimparUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btOkUpdate))
-                .addContainerGap())
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbLogradouroUpdate)
+                            .addComponent(txtLogradouroUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtBairroUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbBairroUpdate))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtCidadeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbCidadeUpdate)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtNumeroUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbNumeroUpdate))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(txtCepUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbCepUpdate)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(btOkUpdate)
+                                .addComponent(btLimparUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbUfUpdate)
+                            .addComponent(cbUfUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,15 +253,18 @@ public class InternalUpdate extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(painelUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(painelUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painelUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(painelUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -196,19 +276,19 @@ public class InternalUpdate extends javax.swing.JInternalFrame {
 
             String nome = txtNomeUpdate.getText();
             String cpf = txtCPFUpdate.getText();
-            String endereco = txtEnderecoUpdate.getText();
+            //String endereco = txtEnderecoUpdate.getText();
             String dataNascimento = txtDataNascimentoUpdate.getText();
 
             pessoaBO.validaNome(nome);
             pessoaBO.validaCPF(cpf);
-            pessoaBO.validaEndereco(endereco);
+            
             pessoaBO.validaDataNascimento(dataNascimento);
 
             Pessoa pessoa = new Pessoa();
             pessoa.setId(Integer.parseInt(lbIdValorUpdate.getText()));
             pessoa.setNome(nome);
             pessoa.setCfp(Long.parseLong(cpf));
-             pessoa.setEndereco(endereco);
+            //pessoa.setEndereco(endereco);
             pessoa.setDtNascimento(formatador.parse(dataNascimento));
             pessoa.setSexo(rbMasculinoUpdate.isSelected() ? 'M' : 'F');
 
@@ -228,20 +308,31 @@ public class InternalUpdate extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup bgSexo;
     protected javax.swing.JButton btLimparUpdate;
     protected javax.swing.JButton btOkUpdate;
+    private javax.swing.JComboBox cbUfUpdate;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lbBairroUpdate;
     private javax.swing.JLabel lbCPFUpdate;
-    private javax.swing.JLabel lbEnderecoUpdate;
+    private javax.swing.JLabel lbCepUpdate;
+    private javax.swing.JLabel lbCidadeUpdate;
     private javax.swing.JLabel lbExemploDataUpdate;
     private javax.swing.JLabel lbIdUpdate;
     protected javax.swing.JLabel lbIdValorUpdate;
+    private javax.swing.JLabel lbLogradouroUpdate;
     private javax.swing.JLabel lbNascimentoUpdate;
     private javax.swing.JLabel lbNomeUpdate;
+    private javax.swing.JLabel lbNumeroUpdate;
     private javax.swing.JLabel lbSexoUpdate;
+    private javax.swing.JLabel lbUfUpdate;
     private javax.swing.JPanel painelUpdate;
     protected javax.swing.JRadioButton rbFemininoUpdate;
     protected javax.swing.JRadioButton rbMasculinoUpdate;
+    private javax.swing.JTextField txtBairroUpdate;
     protected javax.swing.JTextField txtCPFUpdate;
+    private javax.swing.JTextField txtCepUpdate;
+    private javax.swing.JTextField txtCidadeUpdate;
     protected javax.swing.JTextField txtDataNascimentoUpdate;
-    protected javax.swing.JTextField txtEnderecoUpdate;
+    private javax.swing.JTextField txtLogradouroUpdate;
     protected javax.swing.JTextField txtNomeUpdate;
+    private javax.swing.JTextField txtNumeroUpdate;
     // End of variables declaration//GEN-END:variables
 }

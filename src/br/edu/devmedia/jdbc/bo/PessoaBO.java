@@ -1,6 +1,7 @@
 package br.edu.devmedia.jdbc.bo;
 
 import br.edu.devmedia.jdbc.dao.PessoaDAO;
+import br.edu.devmedia.jdbc.dto.Endereco;
 import br.edu.devmedia.jdbc.dto.Pessoa;
 import br.edu.devmedia.jdbc.exception.NegocioException;
 import br.edu.devmedia.jdbc.exception.ValidacaoException;
@@ -24,7 +25,7 @@ public class PessoaBO {
     }
 
     public String[][] listar(List listaIds) throws NegocioException {
-        int numeroColunas = 8;
+        int numeroColunas = 10;
         String[][] listaRetorno = null;
         try {
             PessoaDAO pessoaDAO = new PessoaDAO();
@@ -35,15 +36,19 @@ public class PessoaBO {
             for (int i = 0; i < lista.size(); i++) {
 
                 Pessoa pessoa = lista.get(i);
+                Endereco endereco = pessoa.getEnderecoDTO();
+                
                 listaRetorno[i][0] = pessoa.getId().toString();
                 listaIds.add(pessoa.getId());
                 listaRetorno[i][1] = pessoa.getNome();
                 listaRetorno[i][2] = pessoa.getCfp().toString();
-                listaRetorno[i][3] = pessoa.getEndereco();
-                listaRetorno[i][4] = pessoa.getSexo() == 'M' ? "Masculino" : "Feminino";
-                listaRetorno[i][5] = formatador.format(pessoa.getDtNascimento());
-                listaRetorno[i][6] = "Editar";
-                listaRetorno[i][7] = "Deletar";
+                listaRetorno[i][3] = pessoa.getSexo() == 'M' ? "Masculino" : "Feminino";
+                listaRetorno[i][4] = formatador.format(pessoa.getDtNascimento());
+                listaRetorno[i][5] = endereco.getLogradouro();
+                listaRetorno[i][6] = endereco.getCep().toString();
+                listaRetorno[i][7] = endereco.getUf().getDescricao();
+                listaRetorno[i][8] = "Editar";
+                listaRetorno[i][9] = "Deletar";
             
             
             }
@@ -108,15 +113,24 @@ public class PessoaBO {
         return ehValido;
     }
 
-    public boolean validaEndereco(String endereco) throws ValidacaoException {
+    public boolean validaEndereco(Endereco endereco) throws ValidacaoException {
         boolean ehValido = true;
 
-        if (endereco == null || endereco.equals("")) {
+        if (endereco.getLogradouro() == null || endereco.getLogradouro().equals("")) {
             ehValido = false;
-            throw new ValidacaoException("Endereço é obrigatório!");
-        } else if (endereco.length() > 50) {
+            throw new ValidacaoException("Logradouro é obrigatório!");
+        } else if (endereco.getBairro() == null || endereco.getBairro().equals("")) {
             ehValido = false;
-            throw new ValidacaoException("Endereço deve ter menos de 50 caracteres!");
+            throw new ValidacaoException("Bairro é obrigatório!");
+        }else if (endereco.getCidade()== null || endereco.getCidade().equals("")) {
+            ehValido = false;
+            throw new ValidacaoException("Cidade é obrigatório!");
+        }else if (endereco.getNumero() == null || endereco.getNumero().equals("")) {
+            ehValido = false;
+            throw new ValidacaoException("Numero é obrigatório!");
+        }else if (endereco.getCep() == null || endereco.getCep().equals("")) {
+            ehValido = false;
+            throw new ValidacaoException("CEP é obrigatório!");
         }
         return ehValido;
     }

@@ -21,7 +21,7 @@ public class UfDAO {
             
             while (resultSet.next()) {                
                 Uf uf = new Uf();
-                uf.setIdUf(resultSet.getInt("ID_UFU"));
+                uf.setIdUf(resultSet.getInt("ID_UF"));
                 uf.setSiglaUf(resultSet.getString("SIGLA_UF"));
                 uf.setDescricao(resultSet.getString("DESCRICAO"));   
                 
