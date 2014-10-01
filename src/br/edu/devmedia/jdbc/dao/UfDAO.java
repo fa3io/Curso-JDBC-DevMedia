@@ -29,6 +29,7 @@ public class UfDAO {
             }
             connection.close();
         }catch(Exception e){
+            
             e.printStackTrace();
             throw  new PersistenciaException(e.getMessage());
         }

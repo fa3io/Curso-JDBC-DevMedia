@@ -22,6 +22,7 @@ public class UfBO {
             
             UfDAO  ufDAO = new UfDAO();
             estados = ufDAO.listaEstados();
+            
         }catch(Exception e){
             e.printStackTrace();
             throw new NegocioException(e.getMessage(),e);

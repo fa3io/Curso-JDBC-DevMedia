@@ -219,7 +219,7 @@ public class MainFrame extends javax.swing.JFrame {
             lbUf.setText("UF:");
 
             UfBO ufBO = new UfBO();
-            cbUf.setModel(new javax.swing.DefaultComboBoxModel(converEstados(ufBO.listaEstados())));
+            cbUf.setModel(new javax.swing.DefaultComboBoxModel(convertEstados(ufBO.listaEstados())));
         } catch (Exception e) {
             MensagemUtil.adMesg(MainFrame.this, e.getMessage());
             e.printStackTrace();
@@ -462,7 +462,6 @@ public class MainFrame extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(rbOrdemCpf)))
                         .addGap(118, 118, 118)))
-                .addGap(18, 18, 18)
                 .addComponent(btPesquisar)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(panelConsultaLayout.createSequentialGroup()
@@ -556,7 +555,7 @@ public class MainFrame extends javax.swing.JFrame {
             
             pessoaBO.validaEndereco(endereco);
             pessoa.setEnderecoDTO(endereco);
-            
+
             pessoaBO.Cadastrar(pessoa);
             MensagemUtil.adMesg(MainFrame.this, "Cadastro Efetuado com Sucesso!!!");
             MainFrame.this.dispose();
@@ -708,7 +707,7 @@ public class MainFrame extends javax.swing.JFrame {
         }
     }
     
-    private String[] converEstados(List<Uf> estados){
+    protected String[] convertEstados(List<Uf> estados){
         String[] vetorEstados = new String[estados.size()];
         for (int i = 0; i < estados.size(); i++) {
             Uf uf = estados.get(i);

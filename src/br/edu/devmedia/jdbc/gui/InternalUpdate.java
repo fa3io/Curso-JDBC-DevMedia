@@ -6,10 +6,15 @@
 package br.edu.devmedia.jdbc.gui;
 
 import br.edu.devmedia.jdbc.bo.PessoaBO;
+import br.edu.devmedia.jdbc.bo.UfBO;
+import br.edu.devmedia.jdbc.dto.Endereco;
 import br.edu.devmedia.jdbc.dto.Pessoa;
+import br.edu.devmedia.jdbc.dto.Uf;
+
 import br.edu.devmedia.jdbc.util.MensagemUtil;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  *
@@ -61,112 +66,118 @@ public class InternalUpdate extends javax.swing.JInternalFrame {
         txtCidadeUpdate = new javax.swing.JTextField();
         txtNumeroUpdate = new javax.swing.JTextField();
         txtCepUpdate = new javax.swing.JTextField();
-        cbUfUpdate = new javax.swing.JComboBox();
-        btOkUpdate = new javax.swing.JButton();
-        btLimparUpdate = new javax.swing.JButton();
+        try{
+            cbUfUpdate = new javax.swing.JComboBox();
+            btOkUpdate = new javax.swing.JButton();
+            btLimparUpdate = new javax.swing.JButton();
 
-        painelUpdate.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Edição De Pessoa"));
+            painelUpdate.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Edição De Pessoa"));
 
-        lbNomeUpdate.setText("Nome:");
+            lbNomeUpdate.setText("Nome:");
 
-        lbCPFUpdate.setText("CPF:");
+            lbCPFUpdate.setText("CPF:");
 
-        lbSexoUpdate.setText("Sexo");
+            lbSexoUpdate.setText("Sexo");
 
-        bgSexo.add(rbMasculinoUpdate);
-        rbMasculinoUpdate.setText("Masculino");
+            bgSexo.add(rbMasculinoUpdate);
+            rbMasculinoUpdate.setText("Masculino");
 
-        bgSexo.add(rbFemininoUpdate);
-        rbFemininoUpdate.setText("Femino");
+            bgSexo.add(rbFemininoUpdate);
+            rbFemininoUpdate.setText("Femino");
 
-        lbNascimentoUpdate.setText("Data Nas.");
+            lbNascimentoUpdate.setText("Data Nas.");
 
-        lbExemploDataUpdate.setText("(DD/MM/YYYY)");
+            lbExemploDataUpdate.setText("(DD/MM/YYYY)");
 
-        lbIdUpdate.setText("ID:");
+            lbIdUpdate.setText("ID:");
 
-        javax.swing.GroupLayout painelUpdateLayout = new javax.swing.GroupLayout(painelUpdate);
-        painelUpdate.setLayout(painelUpdateLayout);
-        painelUpdateLayout.setHorizontalGroup(
-            painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelUpdateLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelUpdateLayout.createSequentialGroup()
-                        .addComponent(lbCPFUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCPFUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painelUpdateLayout.createSequentialGroup()
-                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbNomeUpdate)
-                            .addComponent(lbIdUpdate))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbIdValorUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNomeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
-                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(painelUpdateLayout.createSequentialGroup()
-                        .addComponent(lbNascimentoUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtDataNascimentoUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lbExemploDataUpdate))
-                    .addGroup(painelUpdateLayout.createSequentialGroup()
-                        .addComponent(lbSexoUpdate)
-                        .addGap(35, 35, 35)
-                        .addComponent(rbMasculinoUpdate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(rbFemininoUpdate)
-                        .addGap(89, 89, 89)))
-                .addGap(57, 57, 57))
-        );
-        painelUpdateLayout.setVerticalGroup(
-            painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelUpdateLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelUpdateLayout.createSequentialGroup()
-                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbIdUpdate)
-                            .addComponent(lbIdValorUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbNomeUpdate)
-                            .addComponent(txtNomeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+            javax.swing.GroupLayout painelUpdateLayout = new javax.swing.GroupLayout(painelUpdate);
+            painelUpdate.setLayout(painelUpdateLayout);
+            painelUpdateLayout.setHorizontalGroup(
+                painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelUpdateLayout.createSequentialGroup()
+                    .addContainerGap()
+                    .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelUpdateLayout.createSequentialGroup()
                             .addComponent(lbCPFUpdate)
-                            .addComponent(txtCPFUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(painelUpdateLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lbSexoUpdate)
-                            .addComponent(rbMasculinoUpdate)
-                            .addComponent(rbFemininoUpdate))
-                        .addGap(2, 2, 2)
-                        .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtCPFUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(painelUpdateLayout.createSequentialGroup()
+                            .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbNomeUpdate)
+                                .addComponent(lbIdUpdate))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lbIdValorUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtNomeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 178, Short.MAX_VALUE)
+                    .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(painelUpdateLayout.createSequentialGroup()
                             .addComponent(lbNascimentoUpdate)
-                            .addComponent(txtDataNascimentoUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbExemploDataUpdate))))
-                .addGap(137, 137, 137))
-        );
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txtDataNascimentoUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(lbExemploDataUpdate))
+                        .addGroup(painelUpdateLayout.createSequentialGroup()
+                            .addComponent(lbSexoUpdate)
+                            .addGap(35, 35, 35)
+                            .addComponent(rbMasculinoUpdate)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(rbFemininoUpdate)
+                            .addGap(89, 89, 89)))
+                    .addGap(57, 57, 57))
+            );
+            painelUpdateLayout.setVerticalGroup(
+                painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelUpdateLayout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelUpdateLayout.createSequentialGroup()
+                            .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lbIdUpdate)
+                                .addComponent(lbIdValorUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lbNomeUpdate)
+                                .addComponent(txtNomeUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lbCPFUpdate)
+                                .addComponent(txtCPFUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(painelUpdateLayout.createSequentialGroup()
+                            .addGap(1, 1, 1)
+                            .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lbSexoUpdate)
+                                .addComponent(rbMasculinoUpdate)
+                                .addComponent(rbFemininoUpdate))
+                            .addGap(2, 2, 2)
+                            .addGroup(painelUpdateLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lbNascimentoUpdate)
+                                .addComponent(txtDataNascimentoUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lbExemploDataUpdate))))
+                    .addGap(137, 137, 137))
+            );
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Edição De Endereço"));
+            jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Edição De Endereço"));
 
-        lbLogradouroUpdate.setText("Logradouro:");
+            lbLogradouroUpdate.setText("Logradouro:");
 
-        lbBairroUpdate.setText("Bairro:");
+            lbBairroUpdate.setText("Bairro:");
 
-        lbCidadeUpdate.setText("Cidade:");
+            lbCidadeUpdate.setText("Cidade:");
 
-        lbNumeroUpdate.setText("Numero:");
+            lbNumeroUpdate.setText("Numero:");
 
-        lbCepUpdate.setText("CEP:");
+            lbCepUpdate.setText("CEP:");
 
-        lbUfUpdate.setText("UF:");
+            lbUfUpdate.setText("UF:");
 
-        cbUfUpdate.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+            UfBO ufBO = new UfBO();
+            cbUfUpdate.setModel(new javax.swing.DefaultComboBoxModel(convertEstados(ufBO.listaEstados())));
+        }catch(Exception e){
+            MensagemUtil.adMesg(InternalUpdate.this, e.getMessage());
+            e.printStackTrace();
+        }
 
         btOkUpdate.setIcon(new javax.swing.ImageIcon("C:\\Users\\Fábio\\Documents\\NetBeansProjects\\Curso JDBC DevMedia\\img\\edit.png")); // NOI18N
         btOkUpdate.setText("Editar");
@@ -271,26 +282,39 @@ public class InternalUpdate extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btOkUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btOkUpdateActionPerformed
+        Endereco endereco = new Endereco();
+        Pessoa pessoa = new Pessoa();
         PessoaBO pessoaBO = new PessoaBO();
+        Uf uf = new Uf();
         try {
+            uf.setIdUf(cbUfUpdate.getSelectedIndex() + 1);
 
             String nome = txtNomeUpdate.getText();
             String cpf = txtCPFUpdate.getText();
-            //String endereco = txtEnderecoUpdate.getText();
+
             String dataNascimento = txtDataNascimentoUpdate.getText();
 
             pessoaBO.validaNome(nome);
             pessoaBO.validaCPF(cpf);
-            
             pessoaBO.validaDataNascimento(dataNascimento);
 
-            Pessoa pessoa = new Pessoa();
+            
             pessoa.setId(Integer.parseInt(lbIdValorUpdate.getText()));
             pessoa.setNome(nome);
             pessoa.setCfp(Long.parseLong(cpf));
-            //pessoa.setEndereco(endereco);
             pessoa.setDtNascimento(formatador.parse(dataNascimento));
             pessoa.setSexo(rbMasculinoUpdate.isSelected() ? 'M' : 'F');
+            
+            endereco.setLogradouro(txtLogradouroUpdate.getText());
+            endereco.setBairro(txtBairroUpdate.getText());
+            endereco.setCidade(txtCidadeUpdate.getText());
+            endereco.setNumero(Long.parseLong(txtNumeroUpdate.getText()));
+            endereco.setCep(Integer.parseInt(txtCepUpdate.getText()));
+            endereco.setUf(uf);
+            
+            pessoaBO.validaEndereco(endereco);
+            pessoa.setEnderecoDTO(endereco);
+            
 
             
             pessoaBO.atualizar(pessoa);
@@ -335,4 +359,14 @@ public class InternalUpdate extends javax.swing.JInternalFrame {
     protected javax.swing.JTextField txtNomeUpdate;
     private javax.swing.JTextField txtNumeroUpdate;
     // End of variables declaration//GEN-END:variables
+
+   protected String[] convertEstados(List<Uf> estados){
+        String[] vetorEstados = new String[estados.size()];
+        for (int i = 0; i < estados.size(); i++) {
+            Uf uf = estados.get(i);
+            vetorEstados[i] = uf.getDescricao();
+        }
+ 
+         return vetorEstados;   
+    }
 }

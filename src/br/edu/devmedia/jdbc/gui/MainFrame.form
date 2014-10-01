@@ -398,7 +398,7 @@
                 <Component class="javax.swing.JComboBox" name="cbUf">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                      <Connection code="new javax.swing.DefaultComboBoxModel(converEstados(ufBO.listaEstados()))" type="code"/>
+                      <Connection code="new javax.swing.DefaultComboBoxModel(convertEstados(ufBO.listaEstados()))" type="code"/>
                     </Property>
                   </Properties>
                   <AuxValues>
@@ -563,7 +563,6 @@
                               <EmptySpace min="-2" pref="118" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btPesquisar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>

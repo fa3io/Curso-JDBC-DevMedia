@@ -147,6 +147,7 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
 
                 listaPessoa.add(pessoa);
             }
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistenciaException(e.getMessage(), e);
@@ -172,7 +173,7 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
                 endereco.setCep(resultSet.getInt("CEP"));
                 endereco.setUf(getUfById(resultSet.getInt("COD_UF")));
             }
-            
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistenciaException(e.getMessage(), e);
@@ -196,6 +197,7 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
                 uf.setDescricao(resultSet.getString("DESCRICAO"));
                 
             }
+            connection.close();
         }catch(Exception e){
              e.printStackTrace();
             throw new PersistenciaException(e.getMessage(), e);
@@ -255,7 +257,7 @@ public class PessoaDAO implements GenericoDAO<Pessoa> {
 
                 listaPessoa.add(pessoa);
             }
-
+connection.close();
         } catch (Exception e) {
             e.printStackTrace();
             throw new PersistenciaException(e.getMessage(), e);
